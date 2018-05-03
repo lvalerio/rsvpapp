@@ -12,7 +12,7 @@ TEXT1=os.environ.get('TEXT1', "CloudYuga")
 TEXT2=os.environ.get('TEXT2', "Garage RSVP")
 LOGO=os.environ.get('LOGO', "https://raw.githubusercontent.com/cloudyuga/rsvpapp/master/static/cloudyuga.png")
 COMPANY=os.environ.get('COMPANY', "CloudYuga Technology Pvt. Ltd.")
-VERSION=os.environ.get('VERSION')
+VERSION=os.environ.get('VERSION', "1.0.0-sample")
 
 MONGODB_HOST=os.environ.get('MONGODB_HOST', 'localhost')
 client = MongoClient(MONGODB_HOST, 27017)
@@ -62,7 +62,7 @@ def rsvp():
     hostname = socket.gethostname()
     return render_template('profile.html', counter=count, hostname=hostname,\
                            items=items, TEXT1=TEXT1, TEXT2=TEXT2, LOGO=LOGO,\
-                           COMPANY=COMPANY)
+                           COMPANY=COMPANY, VERSION=VERSION)
 
 @app.route('/new', methods=['POST'])
 def new():

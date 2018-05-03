@@ -1,6 +1,8 @@
 FROM teamcloudyuga/python:alpine
 COPY . /usr/src/app
 WORKDIR /usr/src/app
+ARG VERSION=1.0.0-dockerfile
+ENV VERSION=$VERSION
 ENV LINK http://www.meetup.com/cloudyuga/
 ENV TEXT1 CloudYuga
 ENV TEXT2 Garage RSVP!
