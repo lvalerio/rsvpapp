@@ -1,6 +1,6 @@
 stage('test'){
     node('docker-jenkins-slave'){
-        git "${GITREPO}"
+        checkout scm
         sh 'chmod a+x ./run_test.sh'
         sh './run_test.sh'
     }
@@ -8,7 +8,7 @@ stage('test'){
 
 node('docker-image-builder'){
     stage('build the image'){
-        git "${GITREPO}"
+        checkout scm
         withDockerServer([credentialsId: 'cava-docker-host', uri: "tcp://${DOCKERHOST}:2376"]) {
             docker.build "${DOCKER_REGISTRY_USER}/rsvpapp:mooc"
         }
