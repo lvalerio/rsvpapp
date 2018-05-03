@@ -10,7 +10,8 @@ node('docker-image-builder'){
     stage('build the image'){
         checkout scm
         withDockerServer([credentialsId: 'cava-docker-host', uri: "tcp://${DOCKERHOST}:2376"]) {
-            docker.build "${DOCKER_REGISTRY_USER}/rsvpapp:mooc"
+            //docker.build "${DOCKER_REGISTRY_USER}/rsvpapp:mooc"
+            sh "docker build --build-arg VERSION=1.0.0-jenkinsdefined --rm -f Dockerfile -t {DOCKER_REGISTRY_USER}/rsvpapp:mooc ."
         }
     }
     
